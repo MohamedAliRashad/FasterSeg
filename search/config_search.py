@@ -38,7 +38,7 @@ def add_path(path):
 add_path(osp.join(C.root_dir, 'tools'))
 
 """Image Config"""
-C.num_classes = 2
+C.num_classes = 1
 C.background = -1
 C.image_mean = np.array([0.485, 0.456, 0.406])
 C.image_std = np.array([0.229, 0.224, 0.225])
@@ -64,8 +64,8 @@ C.train_scale_array = [0.75, 1, 1.25]
 C.eval_stride_rate = 5 / 6
 C.eval_scale_array = [1, ]
 C.eval_flip = False
-C.eval_height = 1024
-C.eval_width = 2048
+C.eval_height = 720
+C.eval_width = 960
 
 
 """ Search Config """
@@ -86,12 +86,12 @@ C.stem_head_width = [(1, 1), (8./12, 8./12),]
 C.FPS_min = [0, 155.]
 C.FPS_max = [0, 175.]
 if C.pretrain == True:
-    C.batch_size = 3
+    C.batch_size = 5
     C.niters_per_epoch = max(C.num_train_imgs // 2 // C.batch_size, 400)
     C.lr = 2e-2
     C.latency_weight = [0, 0]
-    C.image_height = 256 # this size is after down_sampling
-    C.image_width = 256*2
+    C.image_height = 360 # this size is after down_sampling
+    C.image_width = 480
     C.nepochs = 20
     C.save = "pretrain-%dx%d_F%d.L%d_batch%d"%(C.image_height, C.image_width, C.Fch, C.layers, C.batch_size)
 else:
